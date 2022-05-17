@@ -1,13 +1,372 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+
+/* START: Grid styles */
+#title {
+  text-align: center;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.filedownloader {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  width:70%;
+}
+
+
+
+.filedownloader tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.filedownloader tr.selected {
+  background-color: #ddd;
+}
+
+.filedownloader tr:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+.filedownloader th {
+  padding: 10px;
+  text-align: left;
+}
+.filedownloader tr th:last-child  {
+  text-align: center !important;
+}
+td { border-left:none;border-top:none;padding:10px }​
+
+
+td:last-child {
+  text-align: right;
+}
+
+
+
+.opration {
+  text-align: center;
+}
+
+button.disabled
+{
+  background-color: #cccccc;
+  color: #666666;
+  pointer-events: none;
+}
+
+.button {
+  border: none;
+  outline: none;
+  font-size: 11px;
+  font-family: "Quicksand", sans-serif;
+  color: #f44336;
+  padding: 3px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid #f44336;
+  background-color: transparent;
+}
+
+.button:active {
+  border: 1px solid blue;
+}
+
+.action-button {
+  display: inline-block;
+  padding: 10px;
+  vertical-align: middle;
+  min-width: 150px;
+  
+  cursor: pointer;
+}
+.download-btn {
+  padding: 10px;
+  cursor: pointer;
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 12px 30px;
+}
+.download-btn:hover {
+  cursor: pointer;
+}
+.select-chechbox {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+.status-available {
+  height: 12px;
+  width: 12px;
+  background-color: lightgreen;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+.nonavailable{
+  width: 12px;
+    height: 12px;
+    margin-right: 17px;
+}
+
+/* END: grid style */
+
+/* START: Modal styles*/
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0000003a;
+  transition: opacity 0.2s ease;
+}
+
+.modal {
+  top:30%;
+  left:50%;
+  position: absolute;
+  margin: 0px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 8px 3px;
+  z-index: 99;
+}
+
+.modal button {
+  position: absolute;
+  right: -1rem;
+  top: -1rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.5rem;
+  margin: 0 auto;
+  border-radius: 50%;
+  box-shadow: 1px 1px 1px #0000003a;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.562);
+}
+
+/* modal style ends */
+
+.container-check input:indeterminate~.checkmark {
+  background: #25a5bd;
+}
+
+.container-check input:indeterminate~.checkmark:before {
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translate(0, -50%);
+  width: 80%;
+  height: 3px;
+  background: white;
+}
+
+
+/* Customize the label (the container) */
+
+/* Hide the browser's default checkbox */
+
+.container-check input {
+  position: absolute;
+  opacity: 0;
+}
+
+
+/* Create a custom checkbox */
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  background-color: #fff;
+  border: solid 1px #626579;
+  border-radius: 4px;
+}
+
+
+/* When the checkbox is checked, add a blue background */
+
+.container-check input:checked~.checkmark {
+  background-color: #25a5bd;
+  border: solid 1px #25a5bd;
+}
+
+
+/* Create the checkmark/indicator (hidden when not checked) */
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+
+/* Show the checkmark when checked */
+
+.container-check input:checked~.checkmark:after {
+  display: block;
+}
+
+
+/* Style the checkmark/indicator */
+
+.container-check .checkmark:after {
+  left: 5px;
+  top: 2px;
+  width: 4px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+/* disabled checkmark */
+
+.container-check.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+
+/* Intermediate css */
+
+.container-check input:indeterminate~.checkmark {
+  background: blue;
+}
+
+.container-check input:indeterminate~.checkmark:before {
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translate(0, -50%);
+  width: 80%;
+  height: 3px;
+  background: white;
+}
+
+
+/* Customize the label (the container) */
+
+.container-check {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 11px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-weight: normal;
+}
+
+.container-list ul {
+  list-style: none;
+  margin-left: -14px;
+}
+
+
+/* Hide the browser's default checkbox */
+
+.container-check input {
+  position: absolute;
+  opacity: 0;
+}
+
+
+/* Create a custom inderminant checkbox */
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  background-color: #fff;
+  border: solid 1px #626579;
+  border-radius: 4px;
+}
+
+
+/* When the checkbox is checked, add a blue background */
+
+.container-check input:checked~.checkmark {
+  background-color: blue;
+  border: solid 1px blue;
+}
+
+
+/* Create the checkmark/indicator (hidden when not checked) */
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+
+/* Show the checkmark when checked */
+
+.container-check input:checked~.checkmark:after {
+  display: block;
+}
+
+
+/* Style the checkmark/indicator */
+
+.container-check .checkmark:after {
+  left: 5px;
+  top: 2px;
+  width: 4px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+/* disabled checkmark */
+
+.container-check.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+
+/* Intermediate css */
+
+.container-check .intermediate:after {
+  left: 5px;
+  top: 2px;
+  width: 0px;
+  height: 9px;
+  border: solid white;
+  border-width: 0px 0px 6px 3px;
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
