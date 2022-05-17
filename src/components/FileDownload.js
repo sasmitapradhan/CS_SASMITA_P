@@ -67,14 +67,7 @@
         }
  
    
-  /* rendering the table header elements */
-   const renderHeader = () => {
-     let headerElement = ["Name", "Device", "Path", "Status"];
- 
-     return headerElement.map((key, index) => {
-       return  <th key={index}>{key}</th>;
-     });
-   };
+  
  
    /* to filter the data on click on download button to display in modal and sending as a props */
    function selectedData(data, filterObject) {
@@ -86,34 +79,7 @@
  });
  return filteredArray;
    }
- 
-  /*  to render the table body */
- 
-   const renderBody = () => {
-     return (
-       data &&
-       data.map(({ name, device, path, status }) => {
-         return (
-           <tr key={name} className={ selected[name] ? 'selected': 'nonselected'}>
-               <th scope="row">
-                       <input
-                         type="checkbox"
-                         checked={selected[name] || allSelected}
-                         onChange={toggleSelected(name)} 
-                         className="form-check-input"
-                         
-                       />
-                     </th>
-             <td>{name}</td>
-             <td>{device}</td>
-             <td>{path}</td>
-            
-             <td><span className={ status === 'available' ? 'status-available': 'nonavailable'}></span><span>{status.charAt(0).toUpperCase()+ status.slice(1)}</span></td>
-           </tr>
-         );
-       })
-     );
-   };
+
  
    return (
      <>
